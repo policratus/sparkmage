@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+"""
+Sparkmage
+"""
+import fire
+from acquire.image import ImageAcquisition
+from storage.hadoopfs import HDFS
+
+if __name__ == '__main__':
+    fire.Fire(ImageAcquisition)
+    fire.Fire(HDFS)
