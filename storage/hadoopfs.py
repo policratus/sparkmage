@@ -64,6 +64,6 @@ class HDFS(HDFSBase):
             remote_path,
             local_path,
             overwrite=True,
-            n_thread=cpu_count * 4,
+            n_threads=cpu_count * 4,
             cleanup=True
         )
