@@ -4,7 +4,9 @@ Storage - HDFS
 Stores files into Hadoop Distributed File System
 """
 import abc
-import multiprocessing
+import os
+import numpy
+from PIL import Image
 from requests.exceptions import MissingSchema
 from hdfs import InsecureClient, HdfsError
 
@@ -51,8 +53,6 @@ class HDFS(HDFSBase):
         remote_path
             A valid HDFS filesystem path
         """
-        cpu_count = multiprocessing.cpu_count()
-
         hdfs_conn = cls._connect(host, user)
 
         try:
@@ -60,10 +60,12 @@ class HDFS(HDFSBase):
         except HdfsError:
             hdfs_conn.makedirs(remote_path)
 
-        hdfs_conn.upload(
-            remote_path,
-            local_path,
-            overwrite=True,
-            n_threads=cpu_count * 4,
-            cleanup=True
-        )
+        for ffile in os.listdir(local_path):
+            im = numpy.array(Image.open(local_path + '/' + ffile)).flatten()
+            im = ','.join(str(p) for p in im.tolist())
+
+            hdfs_conn.write(
+                remote_path + os.path.splitext(ffile)[0] + '.arr',
+                data=im,
+                overwrite=True
+            )
