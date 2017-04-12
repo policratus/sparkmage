@@ -61,7 +61,7 @@ class HDFS(HDFSBase):
             hdfs_conn.makedirs(remote_path)
 
         for ffile in os.listdir(local_path):
-            im = numpy.array(Image.open(local_path + '/' + ffile)).flatten()
+            im = numpy.array(Image.open(local_path + '/' + ffile).resize((200, 200)).convert('L')).flatten()
             im = ','.join(str(p) for p in im.tolist())
 
             hdfs_conn.write(
