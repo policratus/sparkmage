@@ -9,7 +9,8 @@ from pyspark.mllib.clustering import KMeans
 
 if __name__ == '__main__':
     path = sys.argv[1]
-    clusters = int(sys.argv[2])
+    remote_path = sys.argv[2]
+    clusters = int(sys.argv[3])
 
     spark_context = SparkContext(appName='Sparkmage')
 
@@ -32,4 +33,8 @@ if __name__ == '__main__':
         result.append([idx + 1, model.predict(image)])
 
     result = spark_context.parallelize(result)
-    result.saveAsTextFile('hdfs://localhost:8020/output/clusters.out')
+    result = result.map(
+        lambda l: ','.join(str(i) for i in l)
+    )
+
+    result.saveAsTextFile(remote_path)
