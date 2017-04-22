@@ -21,14 +21,15 @@ class Caller(object):
         )
 
     @classmethod
-    def analyze(cls, path, clusters):
+    def analyze(cls, path, remote_path, clusters):
         """
         Submit spark jobs
         """
         os.system(
-            '/opt/spark/bin/spark-submit {app} {path} {clusters}'.format(
+            '/opt/spark/bin/spark-submit {app} {path} {remote} {clusters}'.format(
                 app=cls._here() + '/clustering.py',
                 path=path,
+                remote=remote_path,
                 clusters=clusters
             )
         )

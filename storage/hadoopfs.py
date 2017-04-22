@@ -28,8 +28,8 @@ class HDFS(HDFSBase):
     """
     Implementations of HDFS operations
     """
-    @classmethod
-    def _connect(cls, host, user):
+    @staticmethod
+    def _connect(host, user):
         try:
             hdfs_client = InsecureClient(host, user=user)
             _ = hdfs_client.status('/')

@@ -6,8 +6,14 @@ import fire
 from acquire.image import ImageAcquisition
 from analysis.caller import Caller
 from storage.hadoopfs import HDFS
+from visualize.visualization import ImageVisualization
+
+class Sparkmage(ImageAcquisition, Caller, HDFS, ImageVisualization):
+    """
+    Sparkmage
+
+    Sparkmage :: Image clustering framework
+    """
 
 if __name__ == '__main__':
-    fire.Fire(ImageAcquisition)
-    fire.Fire(HDFS)
-    fire.Fire(Caller)
+    fire.Fire(Sparkmage)
