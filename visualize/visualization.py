@@ -16,7 +16,7 @@ class ImageVisualizationBase(object):
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
-    def show(local_path, cluster_hdfs_path):
+    def save(local_path, cluster_hdfs_path):
         """
         Show images after clustering
         """
@@ -85,25 +85,28 @@ class ImageVisualization(ImageVisualizationBase):
                 if im
             ][0]
 
-            image_path = local_path + '/' + images_on_dir[index]
+            if index:
+                image_path = local_path + '/' + images_on_dir[index]
 
-            image = Image.open(image_path)
+                image = Image.open(image_path)
 
-            draw = ImageDraw.Draw(image)
+                draw = ImageDraw.Draw(image)
 
-            font = ImageFont.truetype(
-                os.path.dirname(
-                    os.path.realpath(
-                        __file__
-                    )
-                ) + '/../fonts/LiberationSans-Regular.ttf',
-                32
-            )
+                font = ImageFont.truetype(
+                    os.path.dirname(
+                        os.path.realpath(
+                            __file__
+                        )
+                    ) + '/../fonts/LiberationSans-Regular.ttf',
+                    32
+                )
 
-            draw.text(
-                (0, 0),
-                'Cluster: ' + str(image_cluster[1]),
-                font=font
-            )
-
-            image.save(image_path)
+                draw.text(
+                    (0, 0),
+                    'Cluster: ' + str(image_cluster[1]),
+                    font=font
+                )
+                try:
+                    image.save(image_path)
+                except ValueError:
+                    pass
