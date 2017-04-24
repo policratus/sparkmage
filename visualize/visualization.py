@@ -6,7 +6,6 @@ This module reads back the clustered images
 import abc
 import os
 from PIL import Image, ImageDraw, ImageFont
-import matplotlib.pyplot as plot
 from hdfs import InsecureClient, HdfsError
 
 class ImageVisualizationBase(object):
