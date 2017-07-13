@@ -26,7 +26,7 @@ class Caller(object):
         Submit spark jobs
         """
         os.system(
-            '/opt/spark/bin/spark-submit {app} {path} {remote} {clusters}'.format(
+            'spark-submit {app} {path} {remote} {clusters}'.format(
                 app=cls._here() + '/clustering.py',
                 path=path,
                 remote=remote_path,
