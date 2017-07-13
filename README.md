@@ -2,7 +2,7 @@
 
 **A tool for blazing fast analysis and clustering of similar images using 🐘 Hadoop and ⚡ Spark.**
 
-![Pets Cluster](https://github.com/policratus/sparkmage/blob/better-readme/docs/clusters.jpg)
+![Pets Cluster](https://github.com/policratus/sparkmage/blob/master/docs/clusters.jpg)
 
 ## 🛠 Installation
 Assuming that you've a Unix like OS or emulation, [git](https://git-scm.com/), [Python](https://www.python.org/) 2 or 3 and [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) installed, just issue:
