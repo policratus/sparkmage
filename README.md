@@ -1,7 +1,5 @@
 # 👁✨ sparkmage
 
-**A tool for blazing fast analysis and clustering of similar images using 🐘 Hadoop and ⚡ Spark.**
-
 ![Pets Cluster](https://github.com/policratus/sparkmage/blob/master/docs/clusters.jpg)
 
 ## 🛠 Installation
